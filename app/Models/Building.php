@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use HasFactory;
 
-class Clients extends Model
+class Building extends Model
 {
-	public function orders()
+    public function workplace()
 	{
-		return $this->hasOne('App\Orders', 'client_id');
+		return $this->hasOne(WorkPlace::class);
 	}
-
-    use HasFactory;
 }

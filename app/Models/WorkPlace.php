@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use HasFactory;
 
-class Work_places extends Model
+class WorkPlace extends Model
 {
-		public function buildings()
+    public function building()
 	{
-		return $this->belongsTo('App\Buildings');
+		return $this->belongsTo(Building::class);
 	}
-
-    use HasFactory;
 }

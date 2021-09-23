@@ -18,7 +18,6 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->string('car_number');
             $table->string('corolla');
-
         });
     }
 

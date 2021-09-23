@@ -21,7 +21,6 @@ class CreateOrdersTable extends Migration
             $table->string('end_at');
             $table->string('notes');
             $table->boolean('status');
-
         });
     }
 
