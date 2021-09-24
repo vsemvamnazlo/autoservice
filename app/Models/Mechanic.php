@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use HasFactory;
 
 class Mechanic extends Model
 {
-    public function orders()
+	use HasFactory;
+
+    public function order()
 	{
 		return $this->hasOne(Order::class);
 	}
