@@ -14,8 +14,10 @@ class CreateBuildingsTable extends Migration
     public function up()
     {
         Schema::create('buildings', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('building_id');
             $table->string('address');
+
+            $table->unique('building_id');
         });
     }
 

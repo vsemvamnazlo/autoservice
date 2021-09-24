@@ -14,9 +14,11 @@ class CreateMechanicsTable extends Migration
     public function up()
     {
         Schema::create('mechanics', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('mechanic_id');
             $table->string('name');
             $table->string('work_place_id');
+
+            $table->unique('mechanic_id');
         });
     }
 
