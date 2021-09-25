@@ -14,11 +14,11 @@ class CreateWorkPlacesTable extends Migration
     public function up()
     {
         Schema::create('work_places', function (Blueprint $table) {
-            $table->bigIncrements('work_place_id');
-            $table->string('building_id');
+            $table->id();
+            $table->unsignedBigInteger('building_id');
             $table->string('order');
-
-            $table->unique('work_place_id');
+            
+            $table->foreign('building_id')->references('id')->on('buildings');
         });
     }
 

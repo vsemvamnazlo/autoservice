@@ -14,15 +14,16 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->bigIncrements('order_id');
-            $table->string('client_id');
-            $table->string('mechanic_id');
+            $table->id();
+            $table->foreignId('client_id');
+            $table->foreignId('mechanic_id');
             $table->dateTimeTz('start_at');
             $table->dateTimeTz('end_at');
             $table->text('notes');
             $table->set('status', ['done', 'incomplete', 'processing']);
 
-            $table->unique('order_id');
+            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('mechanic_id')->references('id')->on('mechanics');
         });
     }
 
