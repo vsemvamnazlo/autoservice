@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Client;
+use App\Models\Order;
 
 class ClientSeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
-        Client::factory()->count(12)->create();
+        Client::factory()
+        ->has(Order::factory()->count(10))
+        ->create();
     }
 }

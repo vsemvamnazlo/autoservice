@@ -15,7 +15,7 @@ class MechanicSeeder extends Seeder
      */
     public function run()
     {
-        Mechanic::factory()->count(11)->create();
+        Mechanic::factory()->create();  
 
     }
 }

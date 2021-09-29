@@ -15,11 +15,9 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        Order::factory()->count(17)
+        Order::factory()->count(1)
         ->for(Client::factory()->state([
             'name' => 'Arseniy Raskind'
         ]))->create();   
     }
 }
-
-// сделай это же только с методом белонгс ту для ордер и дальше по цепочке
