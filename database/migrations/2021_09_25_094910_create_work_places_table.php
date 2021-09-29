@@ -15,7 +15,7 @@ class CreateWorkPlacesTable extends Migration
     {
         Schema::create('work_places', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('building_id');
+            $table->unsignedBigInteger('building_id')->nullable();
             $table->string('order');
             
             $table->foreign('building_id')->references('id')->on('buildings');

@@ -15,10 +15,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id');
-            $table->foreignId('mechanic_id');
-            $table->dateTimeTz('start_at');
-            $table->dateTimeTz('end_at');
+            $table->foreignId('client_id')->nullable();
+            $table->foreignId('mechanic_id')->nullable();
+            $table->string('start_at');
+            $table->string('end_at');
             $table->text('notes');
             $table->set('status', ['done', 'incomplete', 'processing']);
 

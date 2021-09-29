@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class WorkPlace extends Model
 {
 	use HasFactory;
+	public $timestamps = false;
 
     public function building()
 	{
