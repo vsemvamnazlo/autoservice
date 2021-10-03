@@ -15,9 +15,6 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        Order::factory()->count(1)
-        ->for(Client::factory()->state([
-            'name' => 'Arseniy Raskind'
-        ]))->create();   
+        Order::factory()->count(5)->create();
     }
 }

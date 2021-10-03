@@ -24,10 +24,11 @@ class WorkPlaceFactory extends Factory
      */
     public function definition()
     {
+        $buildingIDs = DB::table('buildings')->pluck('id')->random();
 
         return [
             'order' => $this->faker->text,
-            'building_id' => Building::factory(),
+            'building_id' => $buildingIDs,
         ];
     }
 }

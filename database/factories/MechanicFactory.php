@@ -25,10 +25,11 @@ class MechanicFactory extends Factory
      */
     public function definition()
     {
+        $work_placeIDs = DB::table('work_places')->pluck('id')->random();
 
         return [
             'name' => $this->faker->name,
-            'work_place_id' => WorkPlace::factory(),
+            'work_place_id' => $work_placeIDs,
         ];
     }
 }

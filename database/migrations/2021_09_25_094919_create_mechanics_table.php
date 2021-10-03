@@ -16,7 +16,7 @@ class CreateMechanicsTable extends Migration
         Schema::create('mechanics', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('work_place_id')->nullable();
+            $table->foreignId('work_place_id')->nullable();
             
             $table->foreign('work_place_id')->references('id')->on('work_places');
         });

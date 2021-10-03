@@ -14,6 +14,6 @@ class WorkPlaceSeeder extends Seeder
      */
     public function run()
     {
-        WorkPlace::factory()->count(4)->create();
+        WorkPlace::factory()->count(7)->create();
     }
 }

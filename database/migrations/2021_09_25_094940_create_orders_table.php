@@ -21,6 +21,8 @@ class CreateOrdersTable extends Migration
             $table->string('end_at');
             $table->text('notes');
             $table->set('status', ['done', 'incomplete', 'processing']);
+            $table->string('price');
+            $table->string('orders_count');
 
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('mechanic_id')->references('id')->on('mechanics');

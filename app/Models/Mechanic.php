@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\WorkPlace;
 
 class Mechanic extends Model
 {
@@ -14,7 +15,6 @@ class Mechanic extends Model
 	{
 		return $this->hasOne(Order::class);
 	}
-
 
 		public function workplace()
 	{
