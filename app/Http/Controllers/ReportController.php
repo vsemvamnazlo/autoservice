@@ -1,13 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Order;
-use App\Models\Mechanic;
-use App\Http\Resources\ReportResource;
-use App\Http\Resources\MechanicResource;
+use App\Services\ReportService;
 
 class ReportController extends Controller
 {
@@ -18,7 +14,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return ReportResource::collection(Order::with('mechanic')->get());
+        $run = new ReportService();
+        $run->addElements();
+        dump($run->outpurArray);
     }
 
     /**
@@ -40,7 +38,7 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        return Order::with('mechanic')->findOrFail($id);
+        //
     }
 
     /**
