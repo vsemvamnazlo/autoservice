@@ -14,9 +14,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $run = new ReportService();
-        $run->addElements();
-        dump($run->outpurArray);
+        $run = new ReportService('2021-09-01', '2021-10-01');
+        $run->getReport();
+        dump($run->outputArray);
     }
 
     /**
