@@ -3,34 +3,28 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 class ReportService
 {
   public $data;
 
-  public $periodArray;
-
   public $outputArray;
 
-  public function __construct($dateFrom, $dateTo)
+  public function __construct()
   {
-      $start = Carbon::createFromFormat('Y-m-d', substr($dateFrom, 0, 10));
-      $end = Carbon::createFromFormat('Y-m-d', substr($dateTo, 0, 10));
-
-      while ($start->lte($end)) {
-
-          $this->periodArray[] = $start->copy()->format('Y-m-d');
-
-          $start->addDay();
-      }
-
-      return $this->periodArray;
+    $start = '2021-09-01';
+    $end = '2021-10-01';
+    $period = new CarbonPeriod($start, $end);
+    
+    foreach ($period as $date) {
+      $this->outputArray[] = $date->format('Y-m-d');
+    }
   }
 
   public function getReport() {
     $this->data = DB::table('orders');
-    $this->outputArray = array_fill_keys($this->periodArray, []);
+    $this->outputArray = array_fill_keys($this->outputArray, []);
 
     foreach ($this->data->get() as $row) {
       if(isset($this->outputArray[$row->end_at])) {
