@@ -13,9 +13,7 @@ class ReportService
 
   public function __construct()
   {
-    $start = '2021-09-01';
-    $end = '2021-10-01';
-    $period = new CarbonPeriod($start, $end);
+    $period = new CarbonPeriod('2021-09-01', '2021-10-01');
     
     foreach ($period as $date) {
       $this->outputArray[] = $date->format('Y-m-d');
