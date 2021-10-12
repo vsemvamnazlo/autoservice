@@ -27,7 +27,7 @@ class ReportService
 
     foreach ($this->data as $row) {
       if(isset($this->outputArray[$row->end_at])) {
-        $this->outputArray[$row->end_at][] = $row;
+        $this->outputArray[$row->end_at][] = $row->toArray();
       }
     }
   }  
