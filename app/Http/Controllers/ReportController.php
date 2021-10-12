@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ReportService;
+use Carbon\CarbonPeriod;
 
 class ReportController extends Controller
 {
@@ -14,7 +15,10 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $run = new ReportService();
+        $start = '2021-09-01';
+        $end = '2021-10-01';
+        $period = new CarbonPeriod($start, $end);
+        $run = new ReportService($period);
         $run->getReport();
         dump($run->outputArray);
     }
