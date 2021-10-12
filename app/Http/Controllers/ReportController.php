@@ -17,9 +17,11 @@ class ReportController extends Controller
     {
         $start = '2021-09-01';
         $end = '2021-10-01';
+        
         $period = new CarbonPeriod($start, $end);
+
         $run = new ReportService($period);
-        $run->getReport();
+        $run->getReport($period);
         dump($run->outputArray);
     }
 
