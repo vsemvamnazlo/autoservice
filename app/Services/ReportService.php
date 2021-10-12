@@ -15,6 +15,8 @@ class ReportService
     foreach ($period as $date) {
       $this->outputArray[] = $date->format('Y-m-d');
     }
+
+    $this->outputArray = array_fill_keys($this->outputArray, []);
   }
 
   public function getReport($period) {
@@ -22,13 +24,9 @@ class ReportService
       ->where('end_at', '>' ,$period->start)
       ->where('end_at', '<', $period->end)
       ->get();
-      
-    $this->outputArray = array_fill_keys($this->outputArray, []);
 
     foreach ($this->data as $row) {
-      if(isset($this->outputArray[$row->end_at])) {
         $this->outputArray[$row->end_at][] = $row->toArray();
-      }
     }
   }  
 }
