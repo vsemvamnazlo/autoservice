@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Order;
-use App\Models\Client;
 
 class OrderSeeder extends Seeder
 {
@@ -15,6 +14,6 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        Order::factory()->count(5)->create();
+        Order::factory()->count(50)->create();
     }
 }
