@@ -22,11 +22,8 @@ class ReportController extends Controller
         $period = new CarbonPeriod($start, $end);
 
         $run = new ReportService($period);
-        // $run->getReport($period);
-        $run->addReportToDB();
 
         dump($run->outputArray);
-        dump($run->income);
     }
 
     /**

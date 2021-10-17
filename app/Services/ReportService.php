@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Order;
-use App\Models\Income;
 
 class ReportService
 {
@@ -11,7 +10,7 @@ class ReportService
 
   public $outputArray;
 
-  public $income;
+  public $income = 0;
 
   public function __construct($period)
   {
@@ -29,13 +28,13 @@ class ReportService
       ->where('end_at', '>' ,$period->start)
       ->where('end_at', '<', $period->end);
 
+      $sum = 0;
     foreach ($this->data->get() as $row) {
-        $this->outputArray[$row->end_at][] = $row->toArray();
-        $this->income += $row->price;
+      $sum += $row->price;
+      $this->outputArray[$row->end_at]['income'] = $sum;
+      $this->outputArray[$row->end_at][] = $row->only(['mechanic_id', 'orders_count', 'price']);
+      $this->income += $row->price;
     }
+    $this->outputArray['income for this period'] = $this->income;
   }  
-
-  public function addReportToDB() {
-    Income::factory()->count(1)->withReport($this->income)->create();
-  }
 }
