@@ -28,16 +28,17 @@ class ReportService
       ->where('end_at', '<', $period->end)
       ->with('mechanic');
 
-      $sum = 0;
     foreach ($this->data->get() as $row) {
-      $sum += $row->price;
-      $this->income += $row->price;
-
       $date = $row->end_at->format('Y-m-d');
-
-      $this->outputArray[$date]['income'] = $sum;
-      $this->outputArray[$date]['orders_count'][] = $row->orders_count;
-      $this->outputArray[$date]['mechanic'][] = $row->mechanic->name;
+      $this->income += $row->price;
+      
+      $this->outputArray[$date]['income'] = ($this->outputArray[$date]['income'] ?? 0) + $row->price;
+      $this->outputArray[$date]['orders_count'] = ($this->outputArray[$date]['orders_count'] ?? 0) + 1;
+      $mechanic = $this->outputArray[$date]['mechanic'] ?? [];
+      
+      if (!in_array($row->mechanic->name, $mechanic)) {
+        $this->outputArray[$date]['mechanic'][] = $row->mechanic->name;
+      }
     }
     $this->outputArray['income for this period'] = $this->income;
 
