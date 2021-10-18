@@ -25,13 +25,12 @@ class OrderFactory extends Factory
     {
         $clientIDs = DB::table('clients')->pluck('id')->random();
         $mechanicIDs = DB::table('mechanics')->pluck('id')->random();
-        $date = '2021-10-' . rand(0,30);
     
         return [
             'client_id' => $clientIDs,
             'mechanic_id' => $mechanicIDs,
-            'start_at' => $this->faker->date($date),
-            'end_at' => $this->faker->date($date),
+            'start_at' => $this->faker->dateTimeThisMonth(),
+            'end_at' => $this->faker->dateTimeThisMonth(),
             'status' => 'processing',
             'notes' => 'oil change',
             'price' => $this->faker->numberBetween(1000, 10000),

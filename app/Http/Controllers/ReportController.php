@@ -16,14 +16,14 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $start = '2021-10-10';
-        $end = '2021-10-30';
+        $start = '2021-10-1';
+        $end = '2021-10-20';
         
         $period = new CarbonPeriod($start, $end);
 
         $run = new ReportService($period);
 
-        dump($run->outputArray);
+        dump($run->getReport($period));
     }
 
     /**

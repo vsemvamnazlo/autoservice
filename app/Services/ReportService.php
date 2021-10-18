@@ -20,21 +20,27 @@ class ReportService
 
     $this->outputArray = array_fill_keys($this->outputArray, []);
 
-    $this->getReport($period);
   }
 
   public function getReport($period) {
     $this->data = Order::query()
       ->where('end_at', '>' ,$period->start)
-      ->where('end_at', '<', $period->end);
+      ->where('end_at', '<', $period->end)
+      ->with('mechanic');
 
       $sum = 0;
     foreach ($this->data->get() as $row) {
       $sum += $row->price;
-      $this->outputArray[$row->end_at]['income'] = $sum;
-      $this->outputArray[$row->end_at][] = $row->only(['mechanic_id', 'orders_count', 'price']);
       $this->income += $row->price;
+
+      $date = $row->end_at->format('Y-m-d');
+
+      $this->outputArray[$date]['income'] = $sum;
+      $this->outputArray[$date]['orders_count'][] = $row->orders_count;
+      $this->outputArray[$date]['mechanic'][] = $row->mechanic->name;
     }
     $this->outputArray['income for this period'] = $this->income;
+
+    return $this->outputArray;
   }  
 }

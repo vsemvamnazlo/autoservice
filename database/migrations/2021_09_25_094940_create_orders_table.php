@@ -17,11 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('client_id')->nullable();
             $table->foreignId('mechanic_id')->nullable();
-            $table->string('start_at');
-            $table->string('end_at');
+            $table->date('start_at');
+            $table->date('end_at');
             $table->text('notes');
             $table->set('status', ['done', 'incomplete', 'processing']);
-            $table->string('price');
+            $table->unsignedBigInteger('price');
             $table->string('orders_count');
 
             $table->foreign('client_id')->references('id')->on('clients');

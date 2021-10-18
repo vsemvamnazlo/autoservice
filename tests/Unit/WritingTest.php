@@ -3,9 +3,9 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Artisan;
+use App\Services\ReportService;
+// use Illuminate\Support\Facades\DB;
+use Carbon\CarbonPeriod;
 
 class WritingTest extends TestCase
 {
@@ -16,10 +16,20 @@ class WritingTest extends TestCase
      */
     public function testWriting()
     {
-        Artisan::call('db:seed');
-
-        $this->assertDatabaseHas('orders', [
-            'status' => 'processing',
-          ]);
+        $start = '2021-10-10';
+        $end = '2021-10-30';
+        
+        $period = new CarbonPeriod($start, $end);
+        
+        $run = new ReportService($period);
+        dump($run->getReport($period));
     }
 }
+
+// function getData()
+//         {
+//           return $data = DB::table('orders')->get();
+//         }
+
+//         $result = getData();
+//         dump($result);

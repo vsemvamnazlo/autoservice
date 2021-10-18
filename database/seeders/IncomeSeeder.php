@@ -3,10 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Mechanic;
-use App\Models\WorkPlace;
+use App\Models\Income;
 
-class MechanicSeeder extends Seeder
+class IncomeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +14,6 @@ class MechanicSeeder extends Seeder
      */
     public function run()
     {
-        Mechanic::factory()->count(5)->create();  
-        
+        Income::factory()->create();
     }
 }
